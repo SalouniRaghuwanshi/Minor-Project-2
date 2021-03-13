@@ -6,12 +6,14 @@
 body{
     margin: 0;
     padding: 0;
-    background-color: aquamarine;
+    
 }
 .box{
     width: 80vw;
+    height: 30vw;
     margin: auto;
-    background-color: brown;
-    height: 10vw;
-    margin: 10vw;
+    background-image: url(nature.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 5vw;
 }
