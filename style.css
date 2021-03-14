@@ -57,6 +57,7 @@ footer{
     color: white;
     margin-top: 33rem;
     border-top-right-radius: 1rem;
+    display: flex;
 }
 .footer .link{
     color: white;
@@ -71,3 +72,31 @@ footer{
 .footer ul{
     padding-inline-start: 0px;
 }
+.c-list{
+ text-align: left;  
+ margin-left: 3vw; 
+}
+.icon-bar{
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    width: 17vw;
+    }
+  
+    .icon{
+      color: white;
+   width: 3vw;
+   text-align: center;
+   border-radius: 100%;
+   border: 1px solid white;
+    }
+    .icon-a{
+     display: block;
+       }
+       #icon-i{
+       line-height: 3vw;
+       }
+    .icon:hover {
+     cursor: pointer;
+     color: hsl(300, 69%, 71%);
+     border: 2px solid hsl(300, 69%, 71%);}
