@@ -1,9 +1,20 @@
-.box{ display: flex; margin-left: 300px;}
-.box1{width: 300px; height: 350px; background-image: url(images/des2.jpg);position: static;}
-.login-box{background-color: white; height: 350px;width: 300px;color: black;padding: 20px; font-size: 18px;}
+.box{ margin-left:30%; display: flex;}
+.box1{width: 30%; height: auto; background-image: url(images/des2.jpg);}
+.login-box{background-color: white; height: 34%;width:30% ;color: black;padding: 20px; font-size: 18px;}
 input[type="text"], input[type="password"]{ padding: 5px; width: 90%; font-size: 14px;border-radius: 5px;border-color: aqua;}
 label{padding: 5px;}
 button{
     width: 90%; padding: 10px; background:linear-gradient(to right, #3B82F6,aqua);margin-bottom: 10px; 
     border-color: #2563EB; margin-top: 10px;border-radius: 10px;color: white;font-size: 20px;
+}
+@media screen and (max-width:900px){
+    .box{ margin-left:1%; margin-right: 1%; display: flex;}
+.box1{width: 50%; height: auto; background-image: url(images/des2.jpg);position: static;}
+.login-box{background-color: white; height: 34%;width: 50%;color: black;padding: 20px; font-size: 18px;}
+input[type="text"], input[type="password"]{ padding: 5px; width: 90%; font-size: 14px;border-radius: 5px;border-color: aqua;}
+label{padding: 5px;}
+button{
+    width: 90%; padding: 10px; background:linear-gradient(to right, #3B82F6,aqua);margin-bottom: 10px; 
+    border-color: #2563EB; margin-top: 10px;border-radius: 10px;color: white;font-size: 20px;
+}
 }
