@@ -1,3 +1,4 @@
+body{margin: 0;padding: 0;box-sizing: border-box;}
 .box{ margin-left:30%; display: flex;}
 .box1{width: 30%; height: auto; background-image: url(images/des2.jpg);}
 .login-box{background-color: white; height: 34%;width:30% ;color: black;padding: 20px; font-size: 18px;}
@@ -5,8 +6,9 @@ input[type="text"], input[type="password"]{ padding: 5px; width: 90%; font-size:
 label{padding: 5px;}
 button{
     width: 90%; padding: 10px; background:linear-gradient(to right, #3B82F6,aqua);margin-bottom: 10px; 
-    border-color: #2563EB; margin-top: 10px;border-radius: 10px;color: white;font-size: 20px;
+    border-color: #2563EB; margin-top: 10px;border-radius: 10px;color: white;font-size: 20px;    
 }
+.nav{background-color: #4B5563 ; height: 60px;margin:auto; padding: 0;}
 @media screen and (max-width:900px){
     .box{ margin-left:3%; margin-right: 3%; display: flex;}
 .box1{width: 50%; height: auto; background-image: url(images/des2.jpg);position: static;}
