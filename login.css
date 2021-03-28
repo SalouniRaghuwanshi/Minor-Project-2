@@ -2,18 +2,44 @@ body{margin: 0;padding: 0;box-sizing: border-box;}
 .box{  display: flex;}
 .img1{width: 50vw;height: 40vw;}
 .login-box{background-color: white; height: 40vw;width:50vw ;color: black;padding: 5vw; font-size: 1.7vw;}
-input[type="text"], input[type="password"]{ padding: 1vw; width: 90%; font-size: 1.2vw;border-radius: 0.7vw;border-color: aqua;}
+.text{font-size: 2.4vw;}
+input[type="text"], input[type="password"]{ padding: 1vw; width: 90%; font-size: 1.2vw;border-radius: 0.7vw;border-color:#7F1D1D}
 label{padding: 0.7vw;}
 .btn1{
     width: 90%; padding: 1vw; background:linear-gradient(to right, black,#7F1D1D);margin-bottom: 1.5vw; 
-    border-color: #2563EB; margin-top: 1.5vw;border-radius: 1vw;font-size: 1.5vw;color: white;    
+    border-color:black ; margin-top: 1.5vw;border-radius: 1vw;font-size: 1.5vw;color: white;    
 }
-button:hover{background:linear-gradient(to right, dodgerblue,aqua);color: black;}
+button:hover{background:linear-gradient(to right, dodgerblue,aqua);color: black; border-color: blue;}
 .nav{background-color:black; height: 5vw;margin:auto; padding: 0;}
 .footer{background-color:black; height: 10vw; padding: 0; margin:auto; text-align: center; }
 .footer h1{font-size: 2vw}
 .footer .para{font-size: 1vw;padding-bottom: 1vw;}
 p :any-link{color: white;}
 @media screen and (max-width:900px){
-
+    .img1{width: 50vw;height: 65vw;}
+    .text{font-size: 4vw;}
+    .login-box{background-color: white; height: 65vw;width:50vw ;color: black;padding: 5vw; font-size: 3vw;}
+    input[type="text"], input[type="password"]{ padding: 1.6vw; width: 90%; font-size: 2vw;border-radius: 2vw;border-color:#7F1D1D}
+    .btn1{
+        width: 90%; padding: 1.5vw; background:linear-gradient(to right, black,#7F1D1D);margin-bottom: 1.5vw; 
+        border-color:black ; margin-top: 1.5vw;border-radius: 2vw;font-size: 2.5vw;color: white;    
+    }
+    .nav{background-color:black; height: 8vw;margin:auto; padding: 0;}
+    .footer{background-color:black; height: 10vw; padding: 0; margin:auto; text-align: center; }
+    .footer h1{font-size: 2.4vw}
+    .footer .para{font-size: 1vw;padding-bottom: 1vw;}
+}
+@media screen and (max-width:480px){
+    .img1{width: 50vw;height: 85vw;}
+    .text{font-size: 5vw;}
+    .login-box{background-color: white; height: 85vw;width:50vw ;color: black;padding: 5vw; font-size: 3.6vw;}
+    input[type="text"], input[type="password"]{ padding: 2vw; width: 90%; font-size: 2.4vw;border-radius: 2vw;border-color:#7F1D1D}
+    .btn1{
+        width: 90%; padding: 2vw; background:linear-gradient(to right, black,#7F1D1D);margin-bottom: 1.5vw; 
+        border-color:black ; margin-top: 1.5vw;border-radius: 3vw;font-size: 2.8vw;color: white;    
+    }
+    .nav{background-color:black; height: 15vw;margin:auto; padding: 0;}
+    .footer{background-color:black; height: 17vw; padding: 0; margin:auto; text-align: center; }
+    .footer h1{font-size: 2.4vw}
+    .footer .para{font-size: 1vw;padding-bottom: 1vw;}
 }
