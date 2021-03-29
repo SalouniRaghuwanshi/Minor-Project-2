@@ -18,15 +18,10 @@ label{margin-top: 0.7vw; margin-bottom: 0.7vw;}
 .choice{height: 2.7vw; width: 100%;}
 
 @media screen and (max-width:900px){
-    .nav{background-color:black; height: 5vw;margin:auto; padding: 0;}
+    .nav{background-color:black; height: 8vw;margin:auto; padding: 0;}
     .footer{background-color:black; height: 10vw; padding: 0; margin:auto; text-align: center; }
-    .footer h1{font-size: 2vw; margin-top: 1.5vw;}
+    .footer h1{font-size: 2.4vw; margin-top: 2vw;}
     .footer .para{font-size: 1vw;padding-bottom: 1vw;}
-    p :any-link{color: white;}
-    .img1{width: 50vw;height:80vw;}
-    .box{  display: flex;}
-    .login-box{background-color: white; height: 80vw;width:50vw ;color: black; font-size: 1.8vw;padding-left: 5vw;
-         padding-right: 5vw; padding-top: 2vw; padding-bottom: 5vw;}
     input[type="text"], input[type="password"]{ height: 3.5vw; width: 100%; font-size: 1vw;border-color:#7F1D1D}
     label{margin-top: 0.5vw; margin-bottom: 0.5w;}
     .text{font-size: 3vw; color: #7F1D1D;}
@@ -35,4 +30,19 @@ label{margin-top: 0.7vw; margin-bottom: 0.7vw;}
         width: 100%; height: 3.5vw; background:linear-gradient(to right, black,#7F1D1D); 
         border-color:black ; margin-top: 2vw;font-size: 1.7vw;color: white;   } 
         .choice{height: 3.5vw; width: 100%;}  
+}
+@media screen and (max-width:900px){
+    .nav{background-color:black; height: 15vw;margin:auto; padding: 0;}
+    .footer{background-color:black; height: 17vw; padding: 0; margin:auto; text-align: center; }
+    .footer h1{font-size: 4vw; margin-top: 3vw;}
+    .footer .para{font-size: 2vw;padding-bottom: 2vw;}
+    input[type="text"], input[type="password"]{ height: 5vw; width: 90%; font-size: 1.6vw;border-color:#7F1D1D}
+    .login-box{ font-size: 3vw;padding: 5vw;}
+    label{margin-top: 0.6vw; margin-bottom: 0.6vw;}
+    .text{font-size: 5vw; color: #7F1D1D;}
+    .gender{display: flex; }
+    .btn1{
+        width: 90%; height: 5vw; background:linear-gradient(to right, black,#7F1D1D); 
+        border-color:black ; margin-top: 2.5vw;font-size: 2vw;color: white;   } 
+        .choice{height: 5vw; width: 90%;}  
 }
