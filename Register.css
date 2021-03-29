@@ -18,7 +18,7 @@ label{margin-top: 0.7vw; margin-bottom: 0.7vw;}
 .choice{height: 2.7vw; width: 100%;}
 
 @media screen and (max-width:900px){
-    .nav{background-color:black; height: 8vw;margin:auto; padding: 0;}
+    .nav{background-color:black; height: 8.5vw;margin:auto; padding: 0;}
     .footer{background-color:black; height: 10vw; padding: 0; margin:auto; text-align: center; }
     .footer h1{font-size: 2.4vw; margin-top: 2vw;}
     .footer .para{font-size: 1vw;padding-bottom: 1vw;}
@@ -31,7 +31,7 @@ label{margin-top: 0.7vw; margin-bottom: 0.7vw;}
         border-color:black ; margin-top: 2vw;font-size: 1.7vw;color: white;   } 
         .choice{height: 3.5vw; width: 100%;}  
 }
-@media screen and (max-width:900px){
+@media screen and (max-width:480px){
     .nav{background-color:black; height: 15vw;margin:auto; padding: 0;}
     .footer{background-color:black; height: 17vw; padding: 0; margin:auto; text-align: center; }
     .footer h1{font-size: 4vw; margin-top: 3vw;}
