@@ -1,9 +1,4 @@
 body{margin: 0;padding: 0;box-sizing: border-box;} 
-.nav{background-color:black; height: 5vw;margin:auto; padding: 0;}
-.footer{background-color:black; height: 10vw; padding: 0; margin:auto; text-align: center; }
-.footer h1{font-size: 2vw; margin-top: 1.5vw;}
-.footer .para{font-size: 1vw;padding-bottom: 1vw;}
-p :any-link{color: white;}
 .img1{width: 50vw;height:auto;}
 .box{  display: flex;}
 .login-box{background-color: white; height: auto;width:50vw ;color: black; font-size: 1.4vw;padding: 5vw;}
@@ -18,10 +13,6 @@ label{margin-top: 0.7vw; margin-bottom: 0.7vw;}
 .choice{height: 2.7vw; width: 100%;}
 
 @media screen and (max-width:900px){
-    .nav{background-color:black; height: 8.5vw;margin:auto; padding: 0;}
-    .footer{background-color:black; height: 10vw; padding: 0; margin:auto; text-align: center; }
-    .footer h1{font-size: 2.4vw; margin-top: 2vw;}
-    .footer .para{font-size: 1vw;padding-bottom: 1vw;}
     input[type="text"], input[type="password"]{ height: 3.5vw; width: 100%; font-size: 1vw;border-color:#7F1D1D}
     label{margin-top: 0.5vw; margin-bottom: 0.5w;}
     .text{font-size: 3vw; color: #7F1D1D;}
@@ -32,10 +23,6 @@ label{margin-top: 0.7vw; margin-bottom: 0.7vw;}
         .choice{height: 3.5vw; width: 100%;}  
 }
 @media screen and (max-width:480px){
-    .nav{background-color:black; height: 15vw;margin:auto; padding: 0;}
-    .footer{background-color:black; height: 17vw; padding: 0; margin:auto; text-align: center; }
-    .footer h1{font-size: 4vw; margin-top: 3vw;}
-    .footer .para{font-size: 2vw;padding-bottom: 2vw;}
     input[type="text"], input[type="password"]{ height: 5vw; width: 90%; font-size: 1.6vw;border-color:#7F1D1D}
     .login-box{ font-size: 3vw;padding: 5vw;}
     label{margin-top: 0.6vw; margin-bottom: 0.6vw;}
