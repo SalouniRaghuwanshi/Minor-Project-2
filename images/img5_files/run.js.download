@@ -1,0 +1,35 @@
+//jQuery(document).ready(function () {
+jQuery(window).on('load', function() {
+    jQuery(".ttcontainer").twentytwenty().on("movestart", function(e) {
+        jQuery(this).find('.excolbtn').css('visibility', 'hidden');
+    }).on("moveend", function(e) {
+        jQuery(this).find('.excolbtn').css('visibility', '');
+    });
+/*
+    jQuery( ".ttcontainer" ).each(function( index ) {
+        var image_w = jQuery( this ).find(".twentytwenty-before").width();
+        jQuery(this).css('max-width', image_w + "px");
+    });
+*/
+});
+
+/*
+jQuery(document).ready(function () {
+    jQuery(".ttcontainer").twentytwenty();
+});
+
+jQuery(document).ready(function () {
+    jQuery(".ttcontainer > img:first").load(function () {
+        var image_h = this.height,
+            image_w = this.width;
+        //Use prev to find previous overlay
+        //jQuery(".ttcontainer").width(image_w);
+        jQuery(this).parent().css('max-width', image_w + "px");
+    });
+});
+
+
+jQuery(window).on('resize', function () {
+    jQuery(".ttcontainer > img:first").trigger('load'); //Trigger load event of image
+}).trigger('resize');
+*/

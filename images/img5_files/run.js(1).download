@@ -1,0 +1,35 @@
+//jQuery(document).ready(function () {
+jQuery(window).load(function() {
+    jQuery(".flipcontainer").flip({
+        trigger: 'hover',
+        autoSize: false
+    });
+
+    jQuery( ".flipcontainer" ).each(function( index ) {
+        var image_w = jQuery( this ).find("img:nth-child(1)").width();
+        jQuery(this).css('max-width', image_w + "px");
+    });
+});
+
+/*
+jQuery(document).ready(function () {
+    jQuery(".flipcontainer").flip({
+        trigger: 'hover',
+        autoSize: false
+    });
+});
+
+jQuery(document).ready(function () {
+    jQuery(".flipcontainer > img:nth-child(1)").load(function () {
+        var image_h = this.height,
+            image_w = this.width;
+        //Use prev to find previous overlay
+        jQuery(this).parent().css('max-width', image_w + "px");
+    });
+});
+
+
+jQuery(window).on('resize', function () {
+    jQuery(".flipcontainer > img:nth-child(1)").trigger('load'); //Trigger load event of image
+}).trigger('resize');
+*/

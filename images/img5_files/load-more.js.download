@@ -1,0 +1,61 @@
+// For LOAD MORE button on category view page
+
+var load_more_btn;
+function loadMore(){
+    if (load_more_btn.data('loading')) return;
+    load_more_btn.html('LOADING...');
+    load_more_btn.data('loading', 1);
+
+    let params = {
+        page: $(load_more_btn).data('page'),
+        cid: $(load_more_btn).data('cid'),
+    };
+    //load_more_btn.attr('LOADING');
+
+    $.ajax({
+        type: 'GET',
+        url: '/blog/ajax/categories.php',
+        data: params,
+        success: function (data) {
+            let response = JSON.parse(data);
+            if (response.button) {
+                load_more_btn.show();
+                load_more_btn.html('LOAD MORE');
+                load_more_btn.data('loading', 0);
+                $(load_more_btn).data('page', response.button.page);
+            } else {
+                load_more_btn.hide();
+            }
+            if (response.records.length) {
+                let tplObj;
+                let blogboxContainer = $("#blogbox-container");
+                let btnContainer = load_more_btn.parent().parent();
+                for (let i in response.records) {
+                    tplObj = $($("#blogbox_tpl").html());
+                    tplObj.find(".blogbox-url").attr('href', response.records[i].href);
+                    tplObj.find(".blogbox-img").attr('data-src', response.records[i].img_src);
+                    tplObj.find(".blogbox-title").html(response.records[i].name);
+                    if ( (typeof is_template2 !== 'undefined') && is_template2) {
+                        blogboxContainer.append(tplObj);
+                    } else {
+                        btnContainer.before(tplObj);
+                    }
+
+                    tplObj.find(".blogbox-img").lazyload();
+                }
+            }
+        }
+    });
+}
+
+//console.log('here '+is_template2);
+
+$(document).ready(function () {
+    load_more_btn = $("#loadmore");
+    load_more_btn.on('click', function (e) {
+        e.preventDefault();
+        loadMore();
+    });
+    load_more_btn.show();
+    loadMore();
+});

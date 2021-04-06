@@ -1,0 +1,1297 @@
+function openrighttab(cn) {
+    var $el = $('.' + cn)
+    if (!$el.length) {
+      createrighttab(cn);
+      var $el = $('.' + cn)
+    }
+
+    newRecaptchaAdd()
+    $el.openMbExtruder(true)
+    $el.openPanel()
+    //setTimeout(function(){
+    var wh = $(window).height(),
+            th = $el.find("div.text").height(),
+            delta = 170
+    if (wh < (th + delta)) {
+        $el.find("div.ext_wrapper").css({
+            top: 0
+        })
+        $el.find("div.text").css({
+            height: wh - delta + 100 + "px",
+            'overflow-y': 'scroll',
+        })
+    }
+    //}.bind(this),1000)
+    return false
+
+}
+
+
+function createrighttab(cn){
+
+  var $html = $(`<div style="height:0;overflow:hidden">asdada
+  <div class="extruderRight_custom ` + cn + ` extruder right tm-modal-right">
+    <a href="javascript:void(0)" class="close-thik"
+      onclick="return closerighttab('` + cn + `')"></a>
+    <form name="fpopup">
+      <span class="ftitle">Download Free Tool</span>
+      <fieldset>
+        <input type="hidden" name="action" value="submitpopupwindow" />
+        <input type="hidden" name="win_type" value="type1" />
+      <ol>
+        <li class="form-row text-input-row">
+          <label>Email*</label>
+          <input type="text" name="email" value="" class="text-input required email" />
+        </li>
+        <li class="tm-text-row">
+          By submitting this form you agree that
+          your information will be used in accordance
+          with FixThePhoto
+          <a href="http://fixthephoto.com/privacy-policy" target="_blank">Privacy Policy</a>.
+        </li>
+        <li class="button-row">
+          <input type="button" value="Download Now" name="submit"
+            class="fbtn download-ico btn-` + cn + `" onclick="return submitpopupwindow(this);" />
+        </li>
+      </ol>
+
+      <div class="tm-form-capcha-center" style="display:none">
+        <div class="future-recaptcha"
+          data-callback="grecaptchaCallback_NONE"
+          id="g-recaptcha-NONE"></div>
+      </div>
+
+      <input type="checkbox" name="privacy_policy" value="1"
+          checked="checked" style="display:none">
+      <input type="checkbox" name="get_news_and_fresh_content" value="1"
+          checked="checked" style="display:none">
+
+      <input type="hidden" name="users_fname" value="Customer"/>
+
+      <input type="hidden" name="article" value="` + window.location.href +`"/>
+
+      <input type="hidden" name="id" value="` +
+        ( $("a#button-" + cn ).data('preces_id') || 84 )
+       + `"/>
+
+      <input type="hidden" name="slide_windows_class" value="` + cn + `">
+      <input type="hidden" name="v_error" value="Required"/>
+      <input type="hidden" name="v_email" value="Enter a valid email"/>
+
+    </fieldset>
+    </form>
+  </div>
+
+  <style>
+    div.fancybox-skin {
+      background: #f7f7f7 !important;
+    }
+
+    /* disable pinterest icon */
+    .shareaholic-service-icon {
+      opacity: 0;
+    }
+  </style>
+
+  <div id="inline` + cn + `"
+    class="popupok free-preset-popup extruderRight_custom extruder right
+    tm-modal-right tm-modal-thanks-mess"
+    style="z-index: 100; position: fixed; top: 0px; right: 0px; width: 1px;
+    opacity: 1;display:none;">
+      <div class="ext_wrapper" style="position: absolute; width: 1px;">
+        <div class="extruder-content" style="overflow: hidden; width: 1px; height: 100%;">
+          <div class="text" style="width: 310px; overflow-y: auto;">
+    				<a href="javascript:void(0)" class="close-thik"
+             onclick="return closerighttab('tm-modal-thanks-mess')"></a>
+    				<form name="fpopup">
+    					<fieldset>
+    						<p>Thank you for download!</p>
+    						<p>Check your email to download <br>
+                    freebies. (approx. 1-2 min)</p>
+    						<a href="javascript:void(0)" class="bok review-button grey"
+                onclick="return closerighttab('tm-modal-thanks-mess')"><b><i>OK</i></b></a>
+    					</fieldset>
+    				</form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>`);
+
+  $html.appendTo('body');
+
+  buildMbExtruderForEl( $html.find("div.extruderRight_custom." + cn) );
+
+  $($html.find("#button-" + cn)).on("click", function(){
+      console.log("render recaptcha $2 new dynamic")
+      var recaptchaId = $(this).attr("data-recaptcha");
+      $("#"+recaptchaId).append( $newRecaptcha );
+      $newRecaptcha.show();
+      var id = cn;
+      $globalNewplSubmitBtn = $("input.btn-"+id)[0]
+    });
+}
+
+
+
+function buildMbExtruderForEl(el){
+  var $el = typeof el == 'string' ? $(el) : el ;
+  $el.buildMbExtruder({
+      positionFixed: true,
+      width: 415,
+      sensibility: 800,
+      position: "right", // left, right, bottom
+      extruderOpacity: 1,
+      flapDim: 0,
+      textOrientation: "bt", // or "tb" (top-bottom or bottom-top)
+      onExtOpen: function () {},
+      onExtContentLoad: function () {},
+      onExtClose: function () {},
+      hidePanelsOnClose: true,
+      autoCloseTime: 0, // 0=never
+      slideTimer: 300,
+      closeOnExternalClick: false,
+      closeOnClick : false
+  });
+
+}
+
+function closerighttab(cn) {
+    $('.' + cn).closeMbExtruder();
+    if (cn == 'tm-modal-thanks-mess'){
+      $('.' + cn).hide();
+    }
+    return false;
+}
+
+function submitpopupwindow(c) {
+
+    var $buttonEl = $(c);
+    var isEmail = function(email) {
+          var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+          return pattern.test(email);
+        }
+    var email = $buttonEl.parent().parent().parent().find("input[name=email]").val();
+
+    if (isEmail(email)){
+      //old
+      //$buttonEl.parent().parent().parent().find(".tm-form-capcha-center").slideDown();
+
+      //new
+      if (!window.$globalNewplSubmitBtn){
+        $globalNewplSubmitBtn = c;
+      }
+      var $recaptchaTo = $buttonEl.parent().parent().parent().find(".tm-form-capcha-center");
+      var $recaptchaTo2 = $recaptchaTo.find(".future-recaptcha");
+      //$recaptchaTo2.html('');
+      $recaptchaTo2.append($newRecaptcha);
+      $newRecaptcha.show();
+      $recaptchaTo.slideDown();
+    }else{
+      alert("Please enter a valid Email address");
+    }
+}
+
+function submitpopupwindow_run(c){
+
+    var $buttonEl = $(c);
+    var buttonOnclick = $buttonEl.attr("onclick")
+    var buttonVal = $buttonEl.val()
+    $buttonEl.attr("onclick",'');
+    $buttonEl.val("Sending request...");
+    $buttonEl.css({"background-color":"#c1c1c1"});
+
+    var f = $(c).parents('form:first'),
+            $privacy_policy = $(f).find('input[name=privacy_policy]')
+
+    $privacy_policy.parent().find(".red-checkbox-border").remove();
+    if (!$privacy_policy.prop("checked")) {
+        $privacy_policy.after('<div class="red-checkbox-border"></div>');
+        return false;
+    }
+
+
+    if (!f.find('input.stats').length) {
+        f.append(getStatsData(true));
+    }
+
+    $(f).find('input[name="code"]').val();
+    setTimeout(
+      function(){
+    $.ajax({
+        type: 'GET',
+        url: "/ajax/?a_action=submitpopupwindow",
+        async: false,
+        data: $(f).serialize(),
+        dataType: "json",
+
+        success: function (data) {
+
+            $buttonEl.attr("onclick",buttonOnclick);
+            $buttonEl.val(buttonVal);
+            $buttonEl.css({"background-color":""});
+            $globalNewplSubmitBtn = false;
+            if (data.success) {
+                console.log($buttonEl);
+                var et = '';
+                var e = false;
+                if (data.errors != null) {
+                    if (data.errors.email != null) {
+                        e = true;
+                        et = et + data.errors.email + "\n";
+                    }
+
+                    if (data.errors.users_fname != null) {
+                        e = true;
+                        et = et + data.errors.users_fname + "\n";
+                    }
+
+                    if (data.errors.code != null) {
+                        e = true;
+                        et = et + data.errors.code + "\n";
+                        $(f).find('.seccode').attr("src", 'includes/captcha/securimage_show.php?in=' + $(f).find('input[name="in"]').val() + "&t=" + Math.random());
+                        grecaptcha.reset(grcp[$(f).find('.g-recaptcha').attr("id")]);
+                    }
+
+                    if (data.errors.recode != null) {
+                        e = true;
+                        et = et + data.errors.recode + "\n";
+                    }
+                }
+                ;
+                if (!e) {
+                    var slide_windows_class = $(f).find('input[name="slide_windows_class"]').val();
+                    closerighttab(slide_windows_class);
+                    var fbid = "#inline" + slide_windows_class;
+                    $(fbid).css({
+                      display: 'block!important',
+                      right: '0px',
+                      visibility: 'visible',
+                      width: '400px!important'
+                    });
+                    $(fbid).show();
+
+/*
+                    $(fbid + " .sentemail").html($(f).find('input[name="email"]').val());
+                    $.fancybox(
+                            $(fbid),
+                            {
+                                helpers: {
+                                    overlay: {
+                                        locked: false
+                                    }
+                                },
+                                wrapCSS: "customfancybox1"
+                            }
+                    );
+
+
+                    $(f).find('.seccode').attr("src", 'includes/captcha/securimage_show.php?in=' + $(f).find('input[name="in"]').val() + "&t=" + Math.random());
+                    $(f)[0].reset();
+                    grecaptcha.reset(grcp[$(f).find('.g-recaptcha').attr("id")]);
+
+                    if (data.answer_message != null) {
+                        $.fancybox({
+                            'content': '<div style="width: 700px; height: 250px;">' + data.answer_message + '</div>',
+                            wrapCSS: "customfancybox1"
+                        });
+                    }
+                    */
+                } else {
+                    alert(et);
+                }
+
+                //location.reload();
+            } else {
+                alert(data.error);
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            //alert(textStatus);
+        }
+    })}.bind(this),500)
+}
+
+function show_ajax_loading() {
+    var $body = $("body");
+    $body.addClass("loading");
+}
+
+function hide_ajax_loading() {
+    var $body = $("body");
+    $body.removeClass("loading");
+}
+
+function closethisfb(c, slide_windows_class) {
+    $(".fancybox-close").trigger("click");
+    var show_url_to_go_after_ok = $("#show_url_to_go_after_ok" + slide_windows_class).val();
+    if (show_url_to_go_after_ok != null && slide_windows_class) {
+        var url_to_go_after_ok = decodeURIComponent($("#url_to_go_after_ok" + slide_windows_class).val());
+        window.location.href = url_to_go_after_ok;
+    }
+}
+
+function closethisfb1() {
+    $(".fancybox-close").trigger("click");
+}
+
+function validateyouremail(c) {
+    var val = $(c).val();
+    if (val.length > 0) {
+        $(c).css("border-color", "");
+    } else {
+        $(c).css("border-color", "red");
+    }
+}
+
+
+function calculate_promocode_preset_price(preset_id) {
+    var presetpromocode = $("#promocode" + preset_id).val();
+
+    $.ajax({
+        type: 'GET',
+        url: "presets/ajax.php?a_action=calculate_promocode_preset_price" + "&id=" + preset_id + "&presetpromocode=" + presetpromocode,
+        async: false,
+        data: $(f).serialize(),
+        dataType: "json",
+        success: function (data) {
+            if (data.success) {
+                console.log(data);
+                if (data.price != null) {
+                    $(".presetprice" + preset_id).html("$" + data.price);
+                }
+            } else {
+                alert(data.error);
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            //alert(textStatus);
+        }
+    })
+
+}
+
+var loginSignupTemplate = 0;
+
+function loadLoginSignupTemplate(callback){
+
+    if(loginSignupTemplate == 0){
+        var myTemplate = document.getElementById('login-signup-template'),
+            normalContent = document.getElementById('login-signup-div');
+        if (myTemplate != null) {
+            var clonedTemplate = myTemplate.content.cloneNode(true);
+            normalContent.appendChild(clonedTemplate);
+            loginSignupTemplate = 1;
+        }
+    }
+
+    callback();
+}
+
+function show_social_signup_form($w = 'c') {
+    loadLoginSignupTemplate(function(){
+
+        console.log("signup form");
+
+        if ($w == 'hm' || //header menu
+            $w == 'lf'    //login form
+        ) {
+            if (typeof popup_form_modal == 'undefined') {
+                popup_form_modal = false;
+            }
+            if (!$ff_site_user_logged_in) {
+                $.fancybox({
+                    href: '#socialsignupform',
+                    //scrolling: 'no'
+                    wrapCSS: 'fancy-social',
+                    modal: popup_form_modal?true:false,
+                    helpers: {
+                        overlay: {
+                            locked: true
+                        }
+                    }
+                });
+            } else {
+                if ($ff_site_user_is_guest){
+                    $.fancybox({
+                        href: '#socialsignupform',
+                        //scrolling: 'no'
+                        wrapCSS: 'fancy-social',
+                        modal: popup_form_modal?true:false,
+                        helpers: {
+                            overlay: {
+                                locked: true
+                            }
+                        }
+                    });
+                } else {
+                    if ($ff_site_create_order_url != null) {
+                        var $redirect_url = $ff_site_create_order_url;
+                    } else {
+                        var $redirect_url = 'login.php';
+                    }
+
+                    window.location.href = $redirect_url;
+                }
+            }
+        } else {
+            go_to_create_order();
+        }
+
+        return false;
+
+    });
+}
+
+function show_social_login_form() {
+    loadLoginSignupTemplate(function(){
+        console.log("login form");
+        if (typeof popup_form_modal == 'undefined') {
+            popup_form_modal = false;
+        }
+        $.fancybox({
+            href: '#socialloginform',
+            //scrolling: 'no'
+            wrapCSS: 'fancy-social',
+            modal: popup_form_modal?true:false,
+            helpers: {
+                overlay: {
+                    locked: true
+                }
+            }
+        });
+    });
+
+}
+
+
+function show_social_forgot_password_form(){
+    loadLoginSignupTemplate(function(){
+        if (typeof popup_form_modal == 'undefined') {
+            popup_form_modal = false;
+        }
+        $.fancybox({
+            href: '#socialforgotpasswordform',
+            //scrolling: 'no'
+            wrapCSS: 'fancy-social',
+            modal: popup_form_modal?true:false,
+            helpers: {
+                overlay: {
+                    locked: true
+                }
+            }
+        });
+    });
+}
+
+function go_to_create_order(){
+    window.location.href = $ff_site_create_order_url;
+}
+
+
+
+
+
+$(document).ready(function () {
+
+//banner click close fix
+    $(window).click(function (e) {
+        var $el = $(e.srcElement);
+        if ($el.hasClass('popup-close')) {
+            setTimeout(function () {
+                $('div.popupBox-banner').remove();
+            }, 699)
+        }
+    });
+
+    $(window).on("scroll", function (e) {
+        var fromTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        $('body').toggleClass("down", (fromTop > 10));
+    });
+
+    // hide #back-top first
+    $(".fipharea-of-button-up").hide();
+
+    // fade in #back-top
+    $(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 400) {
+                $('.fipharea-of-button-up').fadeIn();
+            } else {
+                $('.fipharea-of-button-up').fadeOut();
+            }
+        });
+
+        // scroll body to 0px on click
+        $('.fipharea-of-button-up a').click(function () {
+            $('body,html,header').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+    });
+
+    buildMbExtruderForEl(".extruderRight_custom");
+    buildMbExtruderForEl(".extruderRight_pp");
+
+
+    $('#order-submiting-tooltip').darkTooltip({
+        opacity: 1,
+        theme: 'light',
+        gravity: 'west'
+    });
+
+
+
+
+    var c = $(".buypresetform .your_email");
+
+    c.bind('blur', function (event) {
+        validateyouremail(this);
+    });
+    c.bind('keyup', function (event) {
+        validateyouremail(this);
+    });
+
+    c.trigger('blur');
+
+
+
+
+    $('a[href*=#]:not([href=#])').click(function () {
+        if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+            let $th = decodeURIComponent(this.hash);
+            let target = $($th);
+            target = target.length ? target : $('[name="' +  $th.slice(1) + '"]');
+            if (target.length) {
+                $('html,body').animate({
+                    scrollTop: target.offset().top
+                }, 1000);
+                return false;
+            }
+        }
+    });
+
+
+
+    // Call login API on a click event
+    $(".google-login-button").on('click', function () {
+
+        // API call for Google login
+        gapi.auth2.getAuthInstance().signIn().then(function (success) {
+
+            // API call to get user information
+            gapi.client.request({
+                path: 'https://www.googleapis.com/plus/v1/people/me'
+            }).then(function (success) {
+                var id_token = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token;
+                $.ajax({
+                    type: 'GET',
+                    url: "socialloginsignup.php?a_action=googlelogin",
+                    async: false,
+                    data: {
+                        id_token: id_token
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.success) {
+                            if (data.redirect_url != null) {
+                                window.location.href = data.redirect_url;
+                            }
+                            console.log(data);
+                        } else {
+                            alert(data.error);
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        //alert(textStatus);
+                    }
+                })
+
+
+            },
+                    function (error) {
+                        //console.log(error);
+                        //$("#login-button").removeAttr('disabled');
+                        alert('Error : Failed to get user user information');
+                    }
+            )
+        },
+                function (error) {
+                    //$("#login-button").removeAttr('disabled');
+                    //console.log(error);
+                    alert('Error : Login Failed');
+                }
+        )
+    })
+
+
+    $('select#selectnav1').live('change', function () {
+        var v = $(this).val()
+        if (v == 'javascript:void(0)') {
+            show_social_signup_form()
+        }
+
+        if (v == 'javascript:void(1)') {
+            show_social_login_form()
+        }
+    })
+
+
+    //footer send email form
+    $("form.cusform").on("submit", function () {
+        var $el = $("form.cusform input[name=privacy_policy]");
+        $("form.cusform .red-checkbox-border").remove();
+        if ($el.prop("checked")) {
+            return true
+        } else {
+            $el.after('<div class="red-checkbox-border"></div>');
+            return false;
+        }
+    })
+
+    $("form.fpopup").on("submit", function () {
+        var $el = $("form.cusform input[name=privacy_policy]");
+        $("form.cusform .red-checkbox-border").remove();
+        if ($el.prop("checked")) {
+            return true
+        } else {
+            $el.after('<div class="red-checkbox-border"></div>');
+            return false;
+        }
+    })
+
+
+
+    $('.cusform').dcSlickForms();
+
+
+    //moved from footer php
+    var $apdu = $("a.pdu1")
+    if ($apdu.length) {
+        $apdu.on("click",
+                function (event) {
+                    console.log('a.pdu1 click event')
+                    var target = event.target,
+                            downloadID = (new Date()).getTime(),
+                            //v = "downloadID" + ( new Date() ).getTime(),
+                            v = 'downloadID',
+                            href = $(event.currentTarget).data('href');
+
+                    if (!href) {
+                      console.log('href not defined')
+                      return
+                    }
+                    var src = href + "&var=" + v +
+                            "&downloadID=" + downloadID
+                    if (!window.$globalDownloadIframeBlock){
+                        $globalDownloadIframeBlock = $("<div "+
+                          "style='width:0;height:0;overflow:hidden;position:absolute;opacity:0'></div>").
+                            appendTo(event.currentTarget);
+                    }
+                    $globalDownloadIframeBlock.html('<iframe src="' + src +
+                          '" width="1" height="1" frameborder="0" '+
+                          'style="position:absolute;opacity:0"></iframe>')
+
+                    return src;
+
+                    var cookiePattern = new RegExp((v + "=" + downloadID), "i"),
+                        cookieTimer = setInterval(checkCookies, 1500);
+
+                    function checkCookies() {
+                        if (document.cookie.search(cookiePattern) >= 0) {
+                            clearInterval(cookieTimer);
+                            $.fancybox(
+                                    $("#inline-dl"),
+                                    {
+                                        helpers: {
+                                            overlay: {
+                                                locked: false
+                                            }
+                                        },
+                                        wrapCSS: "customfancybox1 customfancybox2"
+                                    }
+                            );
+
+                            return(
+                                    console.log("Download complete!")
+                                    )
+                        }
+
+                        console.log(
+                                v + " File still downloading 2 ...",
+                                new Date().getTime()
+                                )
+                    }
+                }
+        )
+
+        $apdu[0].click();
+    }
+
+
+
+    // +++ after load popup coupon if code exists in url#hashchange
+
+    var	url = window.location.href,
+        searchStr = 'discount-code-',
+        pos = url.search(searchStr)
+
+    if (pos>0){
+      var code = url.substr(pos + searchStr.length)
+      if (code.length>=8){
+
+        $(`<div class="after-load"></div>`).appendTo($('body'))
+            .load("/after_load_coupon.php");
+      }
+    }
+    // --- after load popup coupon if code exists in url#hashchange
+
+
+
+})
+
+
+function getStatsData(forForm = false) {
+
+    if (window.currentStatsData) {
+        stats = currentStatsData
+    } else {
+        const browser = detectBrowser();
+        const currentDevice = device.noConflict()
+
+        var e = document.documentElement,
+                g = document.getElementsByTagName('body')[0]
+
+        var stats = {
+            os_name: browser.os,
+            os_type: currentDevice.type,
+            orientation: currentDevice.orientation,
+            browser: browser ? (browser.name + " " + browser.version) : 'unknown',
+            browser_w: window.innerWidth || e.clientWidth || g.clientWidth,
+            browser_h: window.innerHeight || e.clientHeight || g.clientHeight,
+            available_w: window.screen.availWidth,
+            available_h: window.screen.availHeight,
+            screen_w: window.screen.width,
+            screen_h: window.screen.height,
+        }
+        currentStatsData = stats;
+    }
+
+    if (forForm) {
+        var html = "";
+        for (var key in stats) {
+            html += '<input type="hidden" name="' + key + '" value="' + stats[key] + '">'
+        }
+        return html;
+    } else {
+        return stats;
+}
+
+
+}
+
+
+isOnScreen = ($el, visiblePercent = 50, screen) => {
+
+    if (!$el.offset())
+        return
+
+    visiblePercent = parseInt(visiblePercent)
+    visiblePercent = (visiblePercent < 0 || visiblePercent > 203) ? 50 : visiblePercent
+    //console.log( 'isOnScreen', $el, visiblePercent );
+
+    var et = $el.offset().top,
+            eh = $el.height(),
+            wt = window.pageYOffset,
+            wh = $(window).height(),
+            ehPart = visiblePercent == 202 ? (eh + wh) : eh * (visiblePercent / 100),
+            top = et - wt,
+            bottom = wt + wh - et - eh
+
+    var ret = (
+            top >= 0 - ehPart && top <= wh + ehPart &&
+            bottom >= 0 - ehPart && bottom <= wh + ehPart
+            ) ? true : false
+    //console.log( 'isOnScreen:' + ret );
+    return ret;
+}
+
+
+var isWindowActive = !document.hidden || true;
+window.onfocus = function () {
+    isWindowActive = true;
+}
+window.onblur = function () {
+    isWindowActive = false;
+}
+
+function isWinTabActive() {
+    var active = true
+    if (document.hidden) {
+        active = false
+    } else if (!isWindowActive) {
+        active = false
+    }
+    return active;
+}
+
+
+flexSlidersOnScroll = () => {
+    //console.log( 'flexSlidersOnScroll' , allFlexSliders)
+
+    for (var i = 0; i < allFlexSliders.length; i++) {
+
+        var g = allFlexSliders[i]
+
+        if (isWinTabActive()) {
+            if (isOnScreen(g, 50)) {
+                if (g.isPaused && isWinTabActive()) {
+                    g.data('flexslider').resume()
+                    g.isPaused = false
+                }
+            } else {
+                if (!g.isPaused) {
+                    g.data('flexslider').pause()
+                    g.isPaused = true
+                }
+            }
+        } else {
+            if (!g.isPaused) {
+                g.data('flexslider').pause()
+                g.isPaused = true
+            }
+        }
+    }
+
+}
+
+flexSlidersCheckFocusTabAndWindow = () => {
+
+    for (var i = 0; i < allFlexSliders.length; i++) {
+        var g = allFlexSliders[i]
+
+        if (isWinTabActive()) {
+            if (g.isPaused) {
+                g.data('flexslider').pause()
+                g.isPaused = true
+            }
+        } else {
+            if (!g.isPaused) {
+                g.data('flexslider').pause()
+                g.isPaused = true
+            }
+        }
+    }
+    setTimeout(function () {
+        flexSlidersCheckFocusTabAndWindow();
+        flexSlidersOnScroll()
+    }, 1500)
+}
+
+flexSliderLosy = ($el) => {
+    if ($el && $el.length && isWinTabActive() && isOnScreen($el, 100)) {
+        var $fs = $el.data('flexslider'),
+                curr = $fs.currentSlide,
+                count = $fs.count,
+                prev = (curr - 1) < 0 ? count - 1 : curr - 1,
+                $ims = [],
+                losysrc, $im, slide, i, n;
+        for (n = 1; n < 4; n++) {
+            slide = n == 1 ? curr : (n == 2 ? curr + 1 : prev);
+            for (i = 1; i < 4; i++) {
+                $im = $($fs.slides[slide]).find('img:nth-child(' + i + ')')
+                if ($im.length)
+                    $ims.push($im);
+            }
+        }
+        for (i = 0; i < $ims.length; i++) {
+            losysrc = $ims[i].data('losysrc');
+            if (losysrc) {
+                $ims[i].attr('src', losysrc);
+                $ims[i].removeAttr("data-losysrc");
+            }
+            if (jQuery().lazyload) {
+                if ($ims[i].hasClass('lazy') && !$ims[i].hasClass('lazy-loaded')){
+                    $($ims[i]).lazyload();
+                }
+            }
+        }
+    }
+}
+
+allFlexSliders = [];
+
+$(document).ready(function () {
+    var flexSliders = $('.flexslider'),
+            len = flexSliders.length,
+            $el
+    if (len) {
+        for (var i = 0; i < len; i++) {
+            $el = $(flexSliders[i]).flexslider({
+                animation: "slide",
+                slideshow: true,
+                controlsContainer: ".flex-container",
+                after: function () {
+                    flexSliderLosy(this.parent)
+                }
+            })
+            $el.data('flexslider').vars.parent = $el;
+            allFlexSliders.push($el)
+            flexSliderLosy($el)
+        }
+    }
+    var scrollTimeoutForFlexSliders = null;
+    $(window).scroll(function () {
+        if (scrollTimeoutForFlexSliders)
+            clearTimeout(scrollTimeoutForFlexSliders)
+        scrollTimeoutForFlexSliders = setTimeout(function () {
+            flexSlidersOnScroll();
+            $(window).trigger("resize.twentytwenty")
+        }, 300)
+    })
+
+    setTimeout(function () {
+        flexSlidersOnScroll();
+        flexSlidersCheckFocusTabAndWindow();
+    }, 300)
+
+
+    setInterval(function () {
+        resizeFlexSliders();
+    }, 700)
+})
+
+//==============================================================================
+
+function resizeFlexSliders() {
+    var $slider = jQuery('.flexsliderhome .flexslider');
+    if ($slider.length) {
+        var $img = $slider.find('ul.slides li').eq(1).find('img');
+        $slider.height($img.height());
+    }
+}
+
+jQuery(window).on('resize', function () {
+    resizeFlexSliders();
+})
+
+//==============================================================================
+
+function mobile_gallery_view_all(c) {
+    $('.mobile-header .show-menu-btn').trigger('click');
+    $('a[data-menuitem="services"]').trigger('click');
+
+
+    return false;
+}
+
+
+
+var $sliders = []
+function mobile_gallery_top_slide_click(c, sel) {
+    jQuery(c).closest('.sliders-thumbs').find('.top-slide').removeClass('top-slide-active');
+    jQuery(c).addClass('top-slide-active');
+
+    var $topslideid = jQuery(c).data('topslideid');
+    ;
+    //console.log($topslideid, sel + '[data-sliderid=' + $topslideid + ']');
+    $.when(jQuery(sel).fadeOut()).done(function () {
+        $.when(jQuery(sel + '[data-sliderid=' + $topslideid + ']').show()).done(function () {
+
+            if (!$(sel + '[data-sliderid=' + $topslideid + '] .mobile-gallery-slider').hasClass('lightSlider')) {
+                $sliders[$topslideid] = $(sel + '[data-sliderid=' + $topslideid + '] .mobile-gallery-slider').lightSlider({
+                    gallery: true,
+                    pagerAfter: '.gallery-slide-button-area',
+                    sliderParent: '.gallery-slide',
+                    item: 1,
+                    thumbItem: 6,
+                    slideMargin: 0,
+                    speed: 500,
+                    auto: false,
+                    loop: false,
+                    thumbMargin: 2,
+                    galleryMode: true,
+                    onBeforeStart: function($el) {
+                        var src_img = $el.find('li img').first().attr('data-src');
+                        var $img = $el.find('li img').first();
+                        //.$img.attr('src', src_img);
+                    },
+                    onSliderLoad: function ($el) {
+                        var src_img = $el.find('li img').first().attr('data-src');
+                        var $img = $el.find('li img').first();
+                        //$img.attr('src', src_img);
+                        $el.removeClass('cS-hidden');
+                        $el.trigger('resize');
+                    },
+                    onAfterSlide: function ($el){
+                        $el.find('li img.lazy').not('.lazy-loaded').lazyload();
+                    }
+                });
+            } else {
+                $sliders[$topslideid].refresh();
+            }
+        }).done(function () {
+            //$(sel + '[data-sliderid=' + $topslideid + '] .mobile-gallery-slider').trigger('resize');
+        });
+    });
+}
+
+function checkAppleDeviceToBodyClass() {
+  var os = navigator.platform
+  var mac = /(Mac|iPhone|iPod|iPad)/i.test( os );
+
+  if (mac){
+    console.log( "is-apple");
+    console.log( "is-apple-" + os.toLowerCase() );
+    $('body').addClass( "is-apple" );
+    $('body').addClass( "is-apple-" + os.toLowerCase() );
+  }else{
+    console.log( "not apple device");
+  }
+}
+
+$(document).ready(function () {
+
+
+
+
+    // Configure/customize these variables.
+    var showChar = 50;  // How many characters are shown by default
+    var ellipsestext = " .....";
+    var moretext = "more";
+    var lesstext = "less";
+
+
+    $('.more').each(function () {
+        var content = $(this).html();
+
+        if (content.length > showChar) {
+
+            var c = content.substr(0, showChar);
+            var h = content.substr(showChar, content.length - showChar);
+
+            var html = c + '<span class="moreellipses">' + ellipsestext + '</span><span class="morecontent"><span>' + h + '</span>&nbsp;<a href="" class="morelink more-text">' + moretext + '</a></span>';
+
+            $(this).html(html);
+        }
+
+    });
+
+    $(".morelink").click(function () {
+        if ($(this).hasClass("less-text")) {
+            $(this).removeClass("less-text");
+            $(this).addClass("more-text");
+            $(this).html(moretext);
+        } else {
+            $(this).removeClass("more-text");
+            $(this).addClass("less-text");
+            $(this).html(lesstext);
+        }
+        $(this).parent().prev().toggle();
+        $(this).prev().toggle();
+        return false;
+    });
+
+
+
+
+
+    checkAppleDeviceToBodyClass()
+})
+
+
+
+
+
+
+
+
+// +++ Newpl windows dinamic load by hash in url
+
+function newRecaptchaAdd(){
+  if (window.grecaptcha && grecaptcha.render){
+
+    if ( !window.$newRecaptcha ){
+      $newRecaptcha = $("<div style='display:none' data-callback='grecaptchaCallbackNew' " +
+            "id='new-recaptcha' class='g-recaptcha'></div>")
+      $('body').append($newRecaptcha)
+    }
+
+    if ( $newRecaptcha.find( 'textarea' ).length ) return
+
+
+    var newRecaptcha = function (){
+      grecaptcha.render('new-recaptcha', {
+        'sitekey' : window.RE_CAPTCHA_SITE_KEY,
+        'theme' : 'light'
+      });
+    }
+
+    newRecaptcha();
+  }else{
+    setTimeout( newRecaptchaAdd, 25 )
+  }
+}
+
+function grecaptchaCallbackNew(){
+  console.log("it is function grecaptchaCallbackNew");
+  if (window.$globalNewplSubmitBtn){
+    submitpopupwindow_run($globalNewplSubmitBtn);
+  }
+}
+
+newplWindowsLoadByHashCounter = 0;
+
+function remove_hash_from_url(){
+    var uri = window.location.toString();
+    if (uri.indexOf("#") > 0) {
+        var clean_uri = uri.substring(0, uri.indexOf("#"));
+        window.history.replaceState({}, document.title, clean_uri);
+    }
+}
+
+function newplWindowsLoadByHash(){
+  var hash = window.location.hash;
+  if (hash && hash.substr(1,14) == 'newlogicblock-'){
+    var name = hash.substr(1)
+
+    if ( !window.$newRecaptcha || !$newRecaptcha.find('textarea').length ){
+        console.log("try generate recaptcha for newlogicblock hash [" + name + "]")
+        newRecaptchaAdd()
+        setTimeout( newplWindowsLoadByHash, 500 )
+        return
+    }
+
+    console.log("try load newlogicblock for hash [" + name + "]");
+
+    //$("#main").append("<textarea id='newpl-dynamic-textarea' style='width:100%;height:500px'>Newpl dynamic here</textarea>");
+
+    $.post( "/newplwindow-by-code", { code: name })
+      .done(function( data ) {
+
+        //$(".extruderRight_custom.isOpened").removeClass('isOpened')
+
+        newplWindowsLoadByHashCounter++;
+
+        c = newplWindowsLoadByHashCounter;
+
+        var $html = $(`<div id='newpl-dynamic` + c
+          + `' style='height:0;overflow:hidden'>` + data + `</div>`);
+
+        console.log("try create click" );
+
+        $html.find("a.btn").click(function(){
+          console.log('btn.click');
+          debugger;
+          //return
+          $html.find(".future-recaptcha").append( $newRecaptcha );
+          //var recaptchaId = $(this).attr("data-recaptcha");
+          //$("#"+recaptchaId).append( $("#new-recaptcha") );
+          $newRecaptcha.show();
+          //var id = "<?php echo $this->id . $this->code_uni?>";
+          //$html.("input.btn-"+id)[0]
+          $globalNewplSubmitBtn = $html.find( "input[type=button]" )
+
+        }.bind(this))
+
+
+
+        console.log("try create extruderRight_custom" );
+        console.log( $html.find( ".extruderRight_custom" ) );
+        $('body').append($html)
+
+        var length = $html.find( ".extruderRight_custom" ).length;
+        for (var n = 0; n < length; n++ ){
+          //setTimeout( function(){
+            $($html.find( ".extruderRight_custom" )[n]).buildMbExtruder({
+                positionFixed: true,
+                width: 415,
+                sensibility: 800,
+                position: "right", // left, right, bottom
+                extruderOpacity: 1,
+                flapDim: 0,
+                textOrientation: "bt", // or "tb" (top-bottom or bottom-top)
+                onExtOpen: function () {},
+                onExtContentLoad: function () {},
+                onExtClose: function () {
+                  console.log("on ext close newpl" + newplWindowsLoadByHashCounter)
+                  remove_hash_from_url();
+                },
+                hidePanelsOnClose: true,
+                autoCloseTime: 0, // 0=never
+                slideTimer: 300,
+                closeOnExternalClick: false,
+                closeOnClick : false
+            })
+          //}.bind(this), n*500);
+        }
+        console.log( "try click" );
+        $html.find("a.btn").click()
+/*
+        $("#main").append(`<div id='newpl-dynamic` + c
+          + `' style='height:0;overflow:hidden'></div>`);
+
+
+        $("#newpl-dynamic"+ c).html(data)
+        //$("#newpl-dynamic-textarea").val(data)
+
+        $("#button-<?php echo $this->id . $this->code_uni; ?>").on("click", function(){
+          console.log("render recaptcha 2 new")
+          //return
+          var recaptchaId = $(this).attr("data-recaptcha");
+          $("#"+recaptchaId).append( $("#new-recaptcha") );
+          $("#new-recaptcha").show();
+          var id = "<?php echo $this->id . $this->code_uni?>";
+          $globalNewplSubmitBtn = $("input.btn-"+id)[0]
+
+        });
+
+        setTimeout( function(){
+          $("#newpl-dynamic"+ newplWindowsLoadByHashCounter +" .extruderRight_custom").buildMbExtruder({
+              positionFixed: true,
+              width: 415,
+              sensibility: 800,
+              position: "right", // left, right, bottom
+              extruderOpacity: 1,
+              flapDim: 0,
+              textOrientation: "bt", // or "tb" (top-bottom or bottom-top)
+              onExtOpen: function () {},
+              onExtContentLoad: function () {},
+              onExtClose: function () {
+                console.log("on ext close newpl" + newplWindowsLoadByHashCounter)
+                remove_hash_from_url();
+              },
+              hidePanelsOnClose: true,
+              autoCloseTime: 0, // 0=never
+              slideTimer: 300,
+              closeOnExternalClick: false,
+              closeOnClick : false
+          });
+        }, 20)
+
+        setTimeout( function(){
+          $("#newpl-dynamic" + newplWindowsLoadByHashCounter + " a.btn").click()
+        }, 40);
+         */
+
+      });
+  }
+}
+
+
+function pp_windows_buy(id){
+  console.log('pp_windows_buy '+id)
+  $(`<form method="post" action="/presets/buy.php">` +
+     `<input type="hidden" name="id" value="` + id + `">` +
+     `<input type="hidden" name="currenturl" value="` + window.location.href + `">` +
+    `</form>`).appendTo('body').submit()
+  return false
+}
+
+$(document).ready(function(){
+  $(window).on('hashchange', newplWindowsLoadByHash)
+  setTimeout( newplWindowsLoadByHash, 500)
+})
+
+// --- Newpl windows dinamic load by hash in url
