@@ -5,18 +5,22 @@ section{width: 90vw;margin: auto;}
  h1{font-size: 3vw; text-align: center; margin-top: 1vw;}
  .link{color: black;}
  .img{width: 20vw;height: 17vw;}
- .fig{font-size: 1vw;color: black;}
-.dispaly{display: flex; margin-top: 0.4vw;}
+ .fig{font-size: 1vw;color: black; margin-top: 0.5vw;}
+.dispaly{display: flex;}
+.check{margin-top: 0.7vw;}
 hr{margin-top:1vw;color: black;}
-table{color: black;}
-tr,td{ border: 1px solid black}
+.Destination{display: grid; grid-template-columns: repeat(3, 1fr);}
+.box{width: 27vw;height: 37vw;border: 1px solid black; margin-bottom: 2vw;}
+.img1{width: 27vw;height: 27vw;}
+.s-box{width: 15vw;height: 35vw; margin: auto; color: black;text-align: center;}
+button{color: white;background-color: black;margin: auto; height: 2vw;width: 3vw;font-size: 1vw;}
 @media screen and (max-width:900px){
 .photography{display: grid; grid-template-columns: repeat(3, 1fr);}
  h1{font-size: 5vw;color: black; text-align: center; margin-top: 1vw;}
  .img{width: 25vw;height: 23vw;}
  .fig{font-size: 1.5vw;color: black;}
 .dispaly{display: flex; margin-top: 2vw;}
-
+.foot{background-image: url(images/n4.jpg);background-size: 20vw;}
 }
 @media screen and (max-width:400px){
 .photography{display: grid; grid-template-columns: repeat(2, 1fr);}
