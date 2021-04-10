@@ -4,6 +4,7 @@ section{width: 90vw;margin: auto;}
 .photography{display: grid; grid-template-columns: repeat(4, 1fr);}
  h1{font-size: 3vw; text-align: center; margin-top: 1vw;}
  .link{color: black;}
+ .card{width: 20vw;height:25vw;text-align: center;color: black;font-size: 1vw;}
  .img{width: 20vw;height: 17vw;}
  .fig{font-size: 1vw;color: black; margin-top: 0.5vw;}
 .dispaly{display: flex;}
@@ -19,6 +20,7 @@ button{color: white;background-color: black;margin: auto; height: 2vw;width: 3vw
 @media screen and (max-width:900px){
 .photography{display: grid; grid-template-columns: repeat(3, 1fr);}
  h1{font-size: 5vw;color: black; text-align: center; margin-top: 1vw;}
+ .card{width: 25vw;height:35vw;text-align: center;color: black;font-size: 1.7vw;}
  .img{width: 25vw;height: 23vw;}
  .fig{font-size: 1.7vw;color: black;}
 .dispaly{display: flex; margin-top: 2vw;}
@@ -31,6 +33,7 @@ button{color: white;background-color: black;margin: auto; height: 4vw;width: 7vw
 @media screen and (max-width:400px){
 .photography{display: grid; grid-template-columns: repeat(2, 1fr);}
  h1{font-size: 7vw;color: black; text-align: center; margin-top: 1vw;}
+ .card{width: 40vw;height:60vw;text-align: center;color: black;font-size: 3vw;}
  .img{width: 40vw;height: 36vw;}
  .fig{font-size: 3vw;color: black;}
 .dispaly{display: flex; margin-top: 3vw;}
