@@ -10,22 +10,33 @@ section{width: 90vw;margin: auto;}
 .check{margin-top: 0.7vw;}
 hr{margin-top:1vw;color: black;}
 .Destination{display: grid; grid-template-columns: repeat(3, 1fr);}
-.box{width: 27vw;height: 37vw;border: 1px solid black; margin-bottom: 2vw;}
+.box{width: 27vw;height: auto;border: 1px solid black; margin-bottom: 3vw;font-size: 1vw;}
 .img1{width: 27vw;height: 27vw;}
-.s-box{width: 15vw;height: 35vw; margin: auto; color: black;text-align: center;}
-button{color: white;background-color: black;margin: auto; height: 2vw;width: 3vw;font-size: 1vw;}
+.s-box{width: 17vw; margin: auto; color: black;text-align: center;}
+button{color: white;background-color: black;margin: auto; height: 2vw;width: 3vw;font-size: 1vw;margin-bottom: 3vw;margin-top: 1vw;}
+#icon{color:orange;}
+#icon1{color:#E5E7EB;}
 @media screen and (max-width:900px){
 .photography{display: grid; grid-template-columns: repeat(3, 1fr);}
  h1{font-size: 5vw;color: black; text-align: center; margin-top: 1vw;}
  .img{width: 25vw;height: 23vw;}
- .fig{font-size: 1.5vw;color: black;}
+ .fig{font-size: 1.7vw;color: black;}
 .dispaly{display: flex; margin-top: 2vw;}
-.foot{background-image: url(images/n4.jpg);background-size: 20vw;}
+.Destination{display: grid; grid-template-columns: repeat(2, 1fr);}
+.box{width: 42vw;height: auto;border: 1px solid black; margin-bottom: 2vw;font-size: 1.7vw;}
+.img1{width: 42vw;height: 35vw;}
+.s-box{width: 25vw; margin: auto; color: black;text-align: center;}
+button{color: white;background-color: black;margin: auto; height: 4vw;width: 7vw;font-size: 1.7vw;margin-bottom: 3.5vw;margin-top: 1.5vw;}
 }
 @media screen and (max-width:400px){
 .photography{display: grid; grid-template-columns: repeat(2, 1fr);}
  h1{font-size: 7vw;color: black; text-align: center; margin-top: 1vw;}
  .img{width: 40vw;height: 36vw;}
- .fig{font-size: 2.3vw;color: black;}
+ .fig{font-size: 3vw;color: black;}
 .dispaly{display: flex; margin-top: 3vw;}
+.Destination{display: grid; grid-template-columns: repeat(1, 1fr);}
+.box{width: 90vw;height: auto;border: 1px solid black; margin-bottom: 2vw;font-size: 3vw;}
+.img1{width: 90vw;height: 80vw;}
+.s-box{width: 60vw; margin: auto; color: black;text-align: center;}
+button{color: white;background-color: black;margin: auto; height: 6vw;width: 10vw;font-size: 3vw;margin-bottom: 6vw;margin-top: 2vw;}
 }
