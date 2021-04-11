@@ -7,7 +7,7 @@
     <title>Document</title>
     <link href="layout/styles/layout.css" rel="stylesheet" type="text/css" media="all">
     <link href="nav.css" rel="stylesheet" type="text/css" media="all">
-    <link href="logout.css" rel="stylesheet" type="text/css" media="all">
+    <link href="checkout.css" rel="stylesheet" type="text/css" media="all">
 </head>
 <body id="top">
     <div class="nav">
@@ -27,7 +27,7 @@
             </ul>
         </nav>
  </div> 
-  <form>
+  <form method="POST">
    <div class="form">
     <h1 class="para">Checkout Form</h1>
     <hr>
@@ -67,6 +67,12 @@
 <label>Total Amount:</label>
 <input type="text">
 </div> 
+<label>Payment Method ^^</label>
+<ul class="icon-bar">
+  <li class="icon"><a class="icon-a"><i class="fa fa-paypal" id="icon-i"></i></a></i></li>
+  <li class="icon"><a class="icon-a"><i class="fa fa-google" id="icon-i"></i></a></i></li>
+  <li class="icon"><a class="icon-a"><i id="icon-i">C</i></a></i></li>
+</ul>
 <div class="display">
 <label>Pay Amount</label>
 <input type="text">
@@ -74,7 +80,7 @@
    </div>      
   </form>
   <footer class="footer">
-    <h1> WEDDING !..</h1>
+    <h1>MY WEDDING!</h1>
     <p class="para">Copyright &copy; 2021 - All Rights Reserved - <a href="#">Saloni</a></p>
   </footer>
   <a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a>

@@ -17,6 +17,7 @@ hr{margin-top:1vw;color: black;}
 button{color: white;background-color: black;margin: auto; height: 2vw;width: 3vw;font-size: 1vw;margin-bottom: 3vw;margin-top: 1vw;}
 #icon{color:orange;}
 #icon1{color:#E5E7EB;}
+.btn1{width: 10vw;height: 3vw;background-color: #374151;}
 @media screen and (max-width:900px){
 .photography{display: grid; grid-template-columns: repeat(3, 1fr);}
  h1{font-size: 5vw;color: black; text-align: center; margin-top: 1vw;}
