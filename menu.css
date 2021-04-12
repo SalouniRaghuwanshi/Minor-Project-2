@@ -30,6 +30,7 @@ button{color: white;background-color: black;margin: auto; height: 2vw;width: 3vw
 .img1{width: 42vw;height: 35vw;}
 .s-box{width: 25vw; margin: auto; color: black;text-align: center;}
 button{color: white;background-color: black;margin: auto; height: 4vw;width: 7vw;font-size: 1.7vw;margin-bottom: 3.5vw;margin-top: 1.5vw;}
+.btn1{width: 18vw;height: 5vw;background-color: #374151;}
 }
 @media screen and (max-width:400px){
 .photography{display: grid; grid-template-columns: repeat(2, 1fr);}
@@ -43,4 +44,5 @@ button{color: white;background-color: black;margin: auto; height: 4vw;width: 7vw
 .img1{width: 90vw;height: 80vw;}
 .s-box{width: 60vw; margin: auto; color: black;text-align: center;}
 button{color: white;background-color: black;margin: auto; height: 6vw;width: 10vw;font-size: 3vw;margin-bottom: 6vw;margin-top: 2vw;}
+.btn1{width: 25vw;height: 8vw;background-color: #374151;}
 }
